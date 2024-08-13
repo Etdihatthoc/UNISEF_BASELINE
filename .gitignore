@@ -11,3 +11,5 @@ result/
 test*
 apex
 hermes_resunet.pth
+data
+prepoccessing_data
