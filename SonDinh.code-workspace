@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../../mnt/disk1/anaconda3/envs/anhnct/lib/python3.8/site-packages/nnunet"
+		}
+	],
+	"settings": {}
+}
