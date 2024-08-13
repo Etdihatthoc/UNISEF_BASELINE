@@ -20,10 +20,10 @@ train_test_split = {
 
 # The mapping dict to map origin label index to the new overall label index
 dataset_lab_map = { 
-    '1p_train': [ 1, 2, 3],
-    '10p_train': [ 1, 2, 3],
-    '50p_train': [ 1, 2, 3],
-    '100p_train': [ 1, 2, 3],
+    '1p_train': [  0, 1, 2],
+    '10p_train': [ 0, 1, 2],
+    '50p_train': [ 0, 1, 2],
+    '100p_train': [ 0, 1, 2],
     
 }   
 
@@ -31,10 +31,10 @@ dataset_lab_map = {
 dataset_modality_map = { 
     #'amos_ct': 0,
     #'amos_mr': -1, # unknown MRI sequences, don't compute loss
-    '1p_train': 3,
-    '10p_train': 3,
-    '50p_train': 3,
-    '100p_train': 3,
+    '1p_train': 2,
+    '10p_train': 2,
+    '50p_train': 2,
+    '100p_train': 2,
 }
 
 # The weight to sample each dataset to balance training. Smaller dataset should have higher weight

@@ -311,5 +311,127 @@ def validation_ddp(net, dataloader, args):
 #     print(C)
 #     return np.array(out_dice_mean)
 
+def validation_ddp_with_large_images(net, dataloader, args):
+    
+    net.eval()
 
+    dice_list = []
+    unique_labels_list = []
+
+    inference = get_inference(args)
+
+    logging.info(f"Evaluating")
+
+    with torch.no_grad():
+        iterator = tqdm(dataloader) if is_master(args) else dataloader
+        for (images, labels, tgt_idx, mod_idx, spacing) in iterator:
+            images, labels = images.cuda().float(), labels.to(torch.int8).cuda()
+            tgt_idx = tgt_idx.cuda().long()
+            mod_idx = mod_idx.cuda().long().unsqueeze(1)
+            C = torch.nonzero(tgt_idx.squeeze(0)+1).shape[0]
+            tgt_idx = tgt_idx[:, :C+1]
+
+            if args.dimension == '2d':
+                images = images.permute(1, 0, 2, 3)
+            
+            torch.cuda.empty_cache()
+            
+            B, _, D, H, W = images.shape
+
+            z_len = 600.
+
+            if D > z_len:
+                num_z_chunks = math.ceil(D / z_len)
+                z_chunk_len = math.ceil(D / num_z_chunks)
+
+                image_chunk_list = []
+                for i in range(num_z_chunks):
+                    image_chunk_list.append(images[:, :, i*z_chunk_len:(i+1)*z_chunk_len, :, :])
+                label_pred_list = []
+                for image_chunk in image_chunk_list:
+                    pred = inference(net, image_chunk, tgt_idx, mod_idx, args)
+                    label_pred_list.append(pred)
+                pred = torch.cat(label_pred_list, dim=2)
+
+            else:
+                pred = inference(net, images, tgt_idx, mod_idx, args)
+
+            del images
+            torch.cuda.empty_cache()
+
+            pred[pred >= 0.5] = 1
+            pred[pred < 0.5] = 0
+            pred = pred.to(torch.int8)
+            torch.cuda.empty_cache()
+            
+            if args.dimension == '2d':
+                labels = labels.squeeze(0)
+            else:
+                pred = pred.squeeze(0)
+                labels = labels.squeeze(0)
+ 
+            pred = pred[:C, :, :, :]
+            labels = labels[:C, :, :, :]
+
+            # Thêm nhãn mới bằng cách lấy max của các nhãn đã có
+            combined_pred_01 = torch.max(pred[0], pred[1]).unsqueeze(0)  # Nhãn combi 0+1
+            combined_pred_012 = torch.max(pred[0], torch.max(pred[1], pred[2])).unsqueeze(0)  # Nhãn combi 0+1+2
+            combined_label_01 = torch.max(labels[0], labels[1]).unsqueeze(0)
+            combined_label_012 = torch.max(labels[0], torch.max(labels[1], labels[2])).unsqueeze(0)
+
+            # Mở rộng pred và labels để chứa các nhãn kết hợp
+            pred_combined = torch.cat((pred, combined_pred_01, combined_pred_012), dim=0)
+            labels_combined = torch.cat((labels, combined_label_01, combined_label_012), dim=0)
+            
+            torch.cuda.empty_cache()
+            tmp_dice_list, _, _ = calculate_dice_split(pred_combined.view(C + 2, -1), labels_combined.view(C + 2, -1), C + 2)
+
+            unique_labels, _ = torch.max(labels_combined.view(C + 2, -1), dim=1)
+            unique_labels = torch.nonzero(unique_labels).squeeze(1).cpu().numpy()  # non-zero means have that target object
+
+            del pred, labels, pred_combined, labels_combined
+            torch.cuda.empty_cache()
+
+            unique_labels =  np.pad(unique_labels, (0, 100-len(unique_labels)), 'constant', constant_values=-1)
+            tmp_dice_list = tmp_dice_list.unsqueeze(0)
+            unique_labels = np.expand_dims(unique_labels, axis=0)
+
+            if args.distributed:
+                # gather results from all gpus
+                tmp_dice_list = concat_all_gather(tmp_dice_list)
+                unique_labels = torch.from_numpy(unique_labels).cuda()
+                unique_labels = concat_all_gather(unique_labels)
+                unique_labels = unique_labels.cpu().numpy()
+
+            tmp_dice_list = tmp_dice_list.cpu().numpy()
+            for idx in range(len(tmp_dice_list)):  # get the result for each sample
+                dice_list.append(tmp_dice_list[idx])
+                unique_labels_list.append(unique_labels[idx])
+
+    # Due to the DistributedSampler pad samples to make data evenly distributed to all gpus,
+    # we need to remove the padded samples for correct evaluation.
+    if args.distributed:
+        world_size = dist.get_world_size()
+        dataset_len = len(dataloader.dataset)
+        padding_size = 0 if (dataset_len % world_size) == 0 else world_size - (dataset_len % world_size)
+        
+        for _ in range(padding_size):
+            dice_list.pop()
+            unique_labels_list.pop()
+    
+    out_dice = []
+    for cls in range(0, C + 2):  # Tính cho tất cả các lớp bao gồm cả 2 nhãn kết hợp mới
+        out_dice.append([])
+    
+    for idx in range(len(dice_list)):
+        for cls in range(0, C + 2):
+            if cls in unique_labels_list[idx]:
+                out_dice[cls].append(dice_list[idx][cls])
+    
+    out_dice_mean = []
+    for cls in range(0, C + 2):  # Tính trung bình cho tất cả các lớp
+        out_dice_mean.append(np.array(out_dice[cls]).mean())
+    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    print(C)
+    return np.array(out_dice_mean)
 

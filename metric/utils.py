@@ -72,3 +72,4 @@ def calculate_dice(pred, target, C):
     dice = 2 * intersection / summ
 
     return dice, intersection, summ
+
