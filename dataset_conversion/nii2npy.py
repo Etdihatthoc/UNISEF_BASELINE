@@ -23,21 +23,14 @@ def pad(img, lab):
     return img, lab
 
 dataset_list = [
-            ('amos_ct', 'ct'),
-            ('amos_mr', 'mr'),
-            ('bcv', 'ct'),
-            ('structseg_oar', 'ct'),
-            ('lits', 'ct'),
-            ('kits', 'ct'),
-            ('chaos', 'mr'),
-            ('structseg_head_oar', 'ct'),
-            ('mnm', 'mr'),
-            ('brain_structure', 'mr'),
-            ('autopet', 'pet'),
+            ('1p_train', 'mr'),
+            ('10p_train', 'mr'),
+            ('50p_train', 'mr'),
+            ('100p_train', 'mr'),
             ]
 
-source_path = './'
-target_path = 'npy'
+source_path = '/home/aiotlabws/SonDinh/universal-medical-image-segmentation/data/'
+target_path = '/home/aiotlabws/SonDinh/universal-medical-image-segmentation/prepoccessing_data/'
 
 for dataset, modality in dataset_list:
     
@@ -50,7 +43,7 @@ for dataset, modality in dataset_list:
             img = sitk.GetArrayFromImage(img).astype(np.float32)
             lab = sitk.ReadImage(os.path.join(source_path, dataset, f"{idx}_gt.nii.gz"))
             lab = sitk.GetArrayFromImage(lab).astype(np.int8)
-           
+            
             if modality == 'ct':
                 img = np.clip(img, -991, 500)
             else:
@@ -72,8 +65,8 @@ for dataset, modality in dataset_list:
 
             img, lab = img.astype(np.float32), lab.astype(np.int8)
             
-            np.save(os.path.join(target_path, dataset, f"{idx}.npy", img)
-            np.save(os.path.join(target_path, dataset, f"{idx}_gt.npy", lab)
+            np.save(os.path.join(target_path, dataset, f"{idx}.npy"), img)
+            np.save(os.path.join(target_path, dataset, f"{idx}_gt.npy"), lab)
 
             print(name)
 

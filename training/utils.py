@@ -87,6 +87,7 @@ def exp_lr_scheduler_with_warmup(optimizer, init_lr, epoch, warmup_epoch, max_ep
         lr = init_lr * 2.718 ** (10*(float(epoch) / float(warmup_epoch) - 1.))
         if epoch == warmup_epoch:
             lr = init_lr
+        print(optimizer)
         for param_group in optimizer.param_groups:
             param_group['lr'] = lr
 

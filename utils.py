@@ -49,6 +49,8 @@ def resume_load_model_checkpoint(net, ema_net, args, strict=True):
     assert args.load != False, "Please specify the load path with --load"
     
     checkpoint = torch.load(args.load, map_location=torch.device('cpu'))
+    print("==========================")
+    print(checkpoint.keys())
     net.load_state_dict(checkpoint['model_state_dict'], strict=strict)
     
     args.start_epoch = checkpoint['epoch']
@@ -56,6 +58,18 @@ def resume_load_model_checkpoint(net, ema_net, args, strict=True):
     if args.ema:
         ema_net.load_state_dict(checkpoint['ema_model_state_dict'], strict=strict)
 
+def resume_load_model_checkpoint(net, ema_net, args, strict=True):
+    assert args.load != False, "Please specify the load path with --load"
+    
+    checkpoint = torch.load(args.load, map_location=torch.device('cpu'))
+    print("==========================")
+    print(checkpoint.keys())
+    net.load_state_dict(checkpoint['model_state_dict'], strict=strict)
+    
+    args.start_epoch = 0
+
+    if args.ema:
+        ema_net.load_state_dict(checkpoint['ema_model_state_dict'], strict=strict)
 
 class AverageMeter(object):
     """ Computes and stores the average and current value """

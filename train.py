@@ -106,8 +106,8 @@ def train_net(net, trainset, valset_list, testset_list, args, ema_net=None):
 
     optimizer = get_optimizer(args, net)
     
-    if args.resume:
-        resume_load_optimizer_checkpoint(optimizer, args)
+    #if args.resume:
+        #resume_load_optimizer_checkpoint(optimizer, args)
     
     criterion_ce = BinaryCrossEntropyLoss(class_num=args.tn).cuda(args.proc_idx)
     criterion_dl = BinaryDiceLoss(class_num=args.tn).cuda(args.proc_idx)
@@ -313,7 +313,7 @@ def get_parser():
 
     args = parser.parse_args()
 
-    config_path = 'config/%s/%s_%s.yaml'%(args.dataset, args.model, args.dimension)
+    config_path = 'config/universal/%s_%s.yaml'%(args.model, args.dimension)
     if not os.path.exists(config_path):
         raise ValueError("The specified configuration doesn't exist: %s"%config_path)
 

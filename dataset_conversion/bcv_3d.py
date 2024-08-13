@@ -56,7 +56,7 @@ if __name__ == '__main__':
         yaml.dump(name_list, f)
 
     os.chdir(src_path)
-
+    ''''''
     for name in name_list:
         img_name = name + '.nii.gz'
         lab_name = img_name.replace('img', 'label')
