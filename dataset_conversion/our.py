@@ -43,8 +43,8 @@ def ResampleImage(imImage, imLabel, save_path, name, target_spacing=(1., 1., 1.)
 if __name__ == '__main__':
 
 
-    src_path = '/home/aiotlabws/SonDinh/universal-medical-image-segmentation/uniseg-evaluation/50p_train/'
-    tgt_path = '/home/aiotlabws/SonDinh/universal-medical-image-segmentation/data/50p_train/'
+    src_path = '/mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/uniseg-evaluation/Sarcoma_train/'
+    tgt_path = '/mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/data/Sarcoma_train/'
 
 
     name_list = os.listdir(src_path + 'images')

@@ -16,7 +16,7 @@ from .dataset_config import train_test_split, dataset_lab_map, dataset_modality_
 class UniversalDataset(Dataset):
     def __init__(self, 
                 args, 
-                dataset_list = ['1p_train', '10p_train','50p_train','100p_train'], 
+                dataset_list = ['Sarcoma_train'], 
                 mode='train'
             ):
         
@@ -187,7 +187,7 @@ if __name__ == '__main__':
     
     class Args(object):
         def __init__(self):
-            self.data_root = '/home/aiotlabws/SonDinh/universal-medical-image-segmentation/prepoccessing_data/'
+            self.data_root = '/mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/prepoccessing_data'
     
     args = Args()
     print('testing')

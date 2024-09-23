@@ -1,5 +1,5 @@
 #DATA
-data_root: /home/aiotlabws/SonDinh/universal-medical-image-segmentation/prepoccessing_data/
+data_root: /mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/prepoccessing_data/
 #MODEL
 arch: resunet
 in_chan: 1
@@ -13,14 +13,14 @@ tn: 72  # the number of task priors + one null task token
 mn: 6  # the number of modality priors
 
 #TRAIN
-epochs: 200
+epochs: 300
 training_size: [128, 128, 128] # training crop size
 start_epoch: 0
 num_workers: 2
 aug_device: 'cpu'
 
-dataset_name_list: ['1p_train']  #", '10p_train','50p_train','100p_train'"
-dataset_classes_list: [ 3 ] #the number of classes of each dataset, exclude background. amos_ct and amos_mr share the same tasks, total 71 tasks , 3, 3, 3
+dataset_name_list: ['Sarcoma_train']  #", '10p_train','50p_train','100p_train'"
+dataset_classes_list: [ 2 ] #the number of classes of each dataset, exclude background. amos_ct and amos_mr share the same tasks, total 71 tasks , 3, 3, 3
 split_seed: 0
 k_fold: 1
 

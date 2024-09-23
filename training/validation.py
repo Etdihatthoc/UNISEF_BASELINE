@@ -373,20 +373,37 @@ def validation_ddp_with_large_images(net, dataloader, args):
             pred = pred[:C, :, :, :]
             labels = labels[:C, :, :, :]
 
+            print("=========================>>>>>>>>>>>>>>>>>>>>===================")
+            print(C)
+
+            # # Thêm nhãn mới bằng cách lấy max của các nhãn đã có
+            # combined_pred_01 = torch.max(pred[0], pred[1]).unsqueeze(0)  # Nhãn combi 0+1
+            # combined_pred_012 = torch.max(pred[0], torch.max(pred[1], pred[2])).unsqueeze(0)  # Nhãn combi 0+1+2
+            # combined_label_01 = torch.max(labels[0], labels[1]).unsqueeze(0)
+            # combined_label_012 = torch.max(labels[0], torch.max(labels[1], labels[2])).unsqueeze(0)
+
+            # # Mở rộng pred và labels để chứa các nhãn kết hợp
+            # pred_combined = torch.cat((pred, combined_pred_01, combined_pred_012), dim=0)
+            # labels_combined = torch.cat((labels, combined_label_01, combined_label_012), dim=0)
+            
+            # torch.cuda.empty_cache()
+            # tmp_dice_list, _, _ = calculate_dice_split(pred_combined.view(C + 2, -1), labels_combined.view(C + 2, -1), C + 2)
+
+            # unique_labels, _ = torch.max(labels_combined.view(C + 2, -1), dim=1)
+            # unique_labels = torch.nonzero(unique_labels).squeeze(1).cpu().numpy()  # non-zero means have that target object
+
             # Thêm nhãn mới bằng cách lấy max của các nhãn đã có
-            combined_pred_01 = torch.max(pred[0], pred[1]).unsqueeze(0)  # Nhãn combi 0+1
-            combined_pred_012 = torch.max(pred[0], torch.max(pred[1], pred[2])).unsqueeze(0)  # Nhãn combi 0+1+2
-            combined_label_01 = torch.max(labels[0], labels[1]).unsqueeze(0)
-            combined_label_012 = torch.max(labels[0], torch.max(labels[1], labels[2])).unsqueeze(0)
+            combined_pred_12 = torch.max(pred[0], pred[1]).unsqueeze(0)  # Nhãn kết hợp 1+2
+            combined_label_12 = torch.max(labels[0], labels[1]).unsqueeze(0)
 
             # Mở rộng pred và labels để chứa các nhãn kết hợp
-            pred_combined = torch.cat((pred, combined_pred_01, combined_pred_012), dim=0)
-            labels_combined = torch.cat((labels, combined_label_01, combined_label_012), dim=0)
-            
-            torch.cuda.empty_cache()
-            tmp_dice_list, _, _ = calculate_dice_split(pred_combined.view(C + 2, -1), labels_combined.view(C + 2, -1), C + 2)
+            pred_combined = torch.cat((pred, combined_pred_12), dim=0)
+            labels_combined = torch.cat((labels, combined_label_12), dim=0)
 
-            unique_labels, _ = torch.max(labels_combined.view(C + 2, -1), dim=1)
+            torch.cuda.empty_cache()
+            tmp_dice_list, _, _ = calculate_dice_split(pred_combined.view(C + 1, -1), labels_combined.view(C + 1, -1), C + 1)
+
+            unique_labels, _ = torch.max(labels_combined.view(C + 1, -1), dim=1)
             unique_labels = torch.nonzero(unique_labels).squeeze(1).cpu().numpy()  # non-zero means have that target object
 
             del pred, labels, pred_combined, labels_combined
@@ -420,16 +437,16 @@ def validation_ddp_with_large_images(net, dataloader, args):
             unique_labels_list.pop()
     
     out_dice = []
-    for cls in range(0, C + 2):  # Tính cho tất cả các lớp bao gồm cả 2 nhãn kết hợp mới
+    for cls in range(0, C + 1):  # Tính cho tất cả các lớp bao gồm cả 1 nhãn kết hợp mới
         out_dice.append([])
     
     for idx in range(len(dice_list)):
-        for cls in range(0, C + 2):
+        for cls in range(0, C + 1):
             if cls in unique_labels_list[idx]:
                 out_dice[cls].append(dice_list[idx][cls])
     
     out_dice_mean = []
-    for cls in range(0, C + 2):  # Tính trung bình cho tất cả các lớp
+    for cls in range(0, C + 1):  # Tính trung bình cho tất cả các lớp
         out_dice_mean.append(np.array(out_dice[cls]).mean())
     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     print(C)

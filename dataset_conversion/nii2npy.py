@@ -23,14 +23,11 @@ def pad(img, lab):
     return img, lab
 
 dataset_list = [
-            ('1p_train', 'mr'),
-            ('10p_train', 'mr'),
-            ('50p_train', 'mr'),
-            ('100p_train', 'mr'),
+            ('Sarcoma_train', 'mr'),
             ]
 
-source_path = '/home/aiotlabws/SonDinh/universal-medical-image-segmentation/data/'
-target_path = '/home/aiotlabws/SonDinh/universal-medical-image-segmentation/prepoccessing_data/'
+source_path = '/mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/data/'
+target_path = '/mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/prepoccessing_data/'
 
 for dataset, modality in dataset_list:
     

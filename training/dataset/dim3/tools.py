@@ -1,13 +1,13 @@
 import os
 
 # Đường dẫn tới thư mục chứa các tập train
-base_path = "/home/aiotlabws/SonDinh/universal-medical-image-segmentation/uniseg-evaluation"
+base_path = "/mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/prepoccessing_data"
 
 # Tạo một dictionary chứa các tập train và test
 train_test_split = {}
 
 # Liệt kê các thư mục con trong base_path
-subdirs = ['1p_train', '10p_train', '50p_train', '100p_train','test']
+subdirs = ['Sarcoma_train','test']
 
 # Lặp qua các thư mục con
 for subdir in subdirs:
