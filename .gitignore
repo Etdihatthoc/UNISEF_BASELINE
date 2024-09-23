@@ -9,3 +9,4 @@ initmodel/
 result/
 *.swp
 test*
+hermes_resunet.pth
