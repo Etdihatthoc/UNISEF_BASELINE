@@ -1,7 +1,7 @@
 **Set up thí nghiệm**
 
 1. Clone github [https://github.com/Etdihatthoc/UNISEF\_BASELINE](https://github.com/Etdihatthoc/UNISEF\_BASELINE)   
-2. Tải pretrained model từ Drive   
+2. Tải pretrained model 
    cd UNISEF\_BASELINE  
    wget https://cloudreve.vmv.re/api/v3/file/source/22096/hermes\_resunet.pth\\?sign\\=zzipfrjfRYmQtmiC5bhIRu4jE71Z\_ZDzRniaTLyR5rM%3D%3A0  
 
@@ -16,7 +16,9 @@
 
 4. Sửa lại abs path trong:
    training\dataset\dim3\dataset_universal.py
+
    training\dataset\dim3\tools.py
+
 5\. Training  
 Lưu ý: sửa lại epochs = 5 trong config\universal\hermes_resunet_3d.yaml để test xem chạy ổn chưa
 
