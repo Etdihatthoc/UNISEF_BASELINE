@@ -1,5 +1,5 @@
 #DATA
-data_root: /mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/prepoccessing_data/
+data_root: prepoccessing_data/
 #MODEL
 arch: resunet
 in_chan: 1
