@@ -23,7 +23,10 @@ def pad(img, lab):
     return img, lab
 
 dataset_list = [
-            ('Sarcoma_train', 'mr'),
+            ('Sarcoma_train_1p', 'mr'),
+            ('Sarcoma_train_10p', 'mr'),
+            ('Sarcoma_train_50p', 'mr'),
+            ('Sarcoma_train_100p', 'mr'),
             ]
 
 source_path = '/mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/data/'

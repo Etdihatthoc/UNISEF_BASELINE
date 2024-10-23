@@ -16,7 +16,7 @@ from .dataset_config import train_test_split, dataset_lab_map, dataset_modality_
 class UniversalDataset(Dataset):
     def __init__(self, 
                 args, 
-                dataset_list = ['Sarcoma_train'], 
+                dataset_list = ['Sarcoma_train_1p','Sarcoma_train_10p','Sarcoma_train_50p','Sarcoma_train_100p'], 
                 mode='train'
             ):
         

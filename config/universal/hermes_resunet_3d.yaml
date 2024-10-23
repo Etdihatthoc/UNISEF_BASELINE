@@ -19,7 +19,7 @@ start_epoch: 0
 num_workers: 2
 aug_device: 'cpu'
 
-dataset_name_list: ['Sarcoma_train']  #", '10p_train','50p_train','100p_train'"
+dataset_name_list: ['Sarcoma_train_1p','Sarcoma_train_10p','Sarcoma_train_50p','Sarcoma_train_100p']  #", '10p_train','50p_train','100p_train'"
 dataset_classes_list: [ 2 ] #the number of classes of each dataset, exclude background. amos_ct and amos_mr share the same tasks, total 71 tasks , 3, 3, 3
 split_seed: 0
 k_fold: 1
@@ -64,3 +64,4 @@ dist_url: 'tcp://localhost:10008' # the port number here should be the same as t
 dist_backend: "nccl"
 multiprocessing_distributed: true
 reproduce_seed: null
+ 

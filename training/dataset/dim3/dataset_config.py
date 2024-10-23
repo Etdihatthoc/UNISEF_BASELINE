@@ -1,9 +1,21 @@
 train_test_split = { 
+ 
     
-    'Sarcoma_train_train': ['STS-00001-000', 'STS-00002-000', 'STS-00003-000', 'STS-00004-000', 'STS-00005-000', 'STS-00006-000', 'STS-00007-000', 'STS-00008-000', 'STS-00009-000', 'STS-00010-000', 'STS-00011-000', 'STS-00012-000', 'STS-00013-000', 'STS-00014-000', 'STS-00015-000', 'STS-00016-000', 'STS-00017-000', 'STS-00018-000', 'STS-00019-000', 'STS-00020-000', 'STS-00021-000', 'STS-00022-000', 'STS-00023-000', 'STS-00024-000', 'STS-00025-000', 'STS-00026-000', 'STS-00027-000', 'STS-00028-000', 'STS-00029-000', 'STS-00030-000', 'STS-00031-000', 'STS-00032-000', 'STS-00033-000', 'STS-00034-000', 'STS-00035-000', 'STS-00036-000', 'STS-00037-000', 'STS-00038-000', 'STS-00039-000', 'STS-00040-000'], 
-    'Sarcoma_train_val': ['STS-00041-000', 'STS-00042-000', 'STS-00043-000', 'STS-00044-000', 'STS-00045-000', 'STS-00046-000'], 
-    'Sarcoma_train_test': ['STS-00047-000', 'STS-00048-000', 'STS-00049-000', 'STS-00050-000', 'STS-00051-000']
+    'Sarcoma_train_1P_train': ['STS-00001-000','STS-00002-000'], 
+    'Sarcoma_train_1P_val': ['STS-00041-000', 'STS-00042-000', 'STS-00043-000', 'STS-00044-000', 'STS-00045-000', 'STS-00046-000'], 
+    'Sarcoma_train_1P_test': ['STS-00047-000', 'STS-00048-000', 'STS-00049-000', 'STS-00050-000', 'STS-00051-000'],
 
+    'Sarcoma_train_10P_train': ['STS-00003-000', 'STS-00004-000', 'STS-00005-000', 'STS-00006-000', 'STS-00007-000', 'STS-00008-000'], 
+    'Sarcoma_train_10P_val': ['STS-00041-000', 'STS-00042-000', 'STS-00043-000', 'STS-00044-000', 'STS-00045-000', 'STS-00046-000'], 
+    'Sarcoma_train_10P_test': ['STS-00047-000', 'STS-00048-000', 'STS-00049-000', 'STS-00050-000', 'STS-00051-000'],
+
+    'Sarcoma_train_50P_train': ['STS-00009-000', 'STS-00010-000', 'STS-00011-000', 'STS-00012-000', 'STS-00013-000', 'STS-00014-000', 'STS-00015-000', 'STS-00016-000', 'STS-00017-000', 'STS-00018-000', 'STS-00019-000', 'STS-00020-000', 'STS-00021-000', 'STS-00022-000', 'STS-00023-000', 'STS-00024-000', 'STS-00025-000', 'STS-00026-000', 'STS-00027-000', 'STS-00028-000', 'STS-00029-000', 'STS-00030-000', 'STS-00031-000', 'STS-00032-000', 'STS-00033-000', 'STS-00034-000'], 
+    'Sarcoma_train_50P_val': ['STS-00041-000', 'STS-00042-000', 'STS-00043-000', 'STS-00044-000', 'STS-00045-000', 'STS-00046-000'], 
+    'Sarcoma_train_50P_test': ['STS-00047-000', 'STS-00048-000', 'STS-00049-000', 'STS-00050-000', 'STS-00051-000'],
+
+    'Sarcoma_train_100P_train': ['STS-00001-000', 'STS-00002-000', 'STS-00003-000', 'STS-00004-000', 'STS-00005-000', 'STS-00006-000', 'STS-00007-000', 'STS-00008-000', 'STS-00009-000', 'STS-00010-000', 'STS-00011-000', 'STS-00012-000', 'STS-00013-000', 'STS-00014-000', 'STS-00015-000', 'STS-00016-000', 'STS-00017-000', 'STS-00018-000', 'STS-00019-000', 'STS-00020-000', 'STS-00021-000', 'STS-00022-000', 'STS-00023-000', 'STS-00024-000', 'STS-00025-000', 'STS-00026-000', 'STS-00027-000', 'STS-00028-000', 'STS-00029-000', 'STS-00030-000', 'STS-00031-000', 'STS-00032-000', 'STS-00033-000', 'STS-00034-000', 'STS-00035-000', 'STS-00036-000', 'STS-00037-000', 'STS-00038-000', 'STS-00039-000', 'STS-00040-000'], 
+    'Sarcoma_train_100P_val': ['STS-00041-000', 'STS-00042-000', 'STS-00043-000', 'STS-00044-000', 'STS-00045-000', 'STS-00046-000'], 
+    'Sarcoma_train_100P_test': ['STS-00047-000', 'STS-00048-000', 'STS-00049-000', 'STS-00050-000', 'STS-00051-000'],
     # 'STS_train_train': ['BraTS-PED-00002-000'], 
     # 'STS_train_val': ['BraTS-PED-00002-000'], 
     # 'STS_train_test': ['BraTS-PED-00060-000', 'BraTS-PED-00143-000', 'BraTS-PED-00137-000', 'BraTS-PED-00079-000', 'BraTS-PED-00020-000', 'BraTS-PED-00085-000', 'BraTS-PED-00009-000', 'BraTS-PED-00171-000', 'BraTS-PED-00098-000', 'BraTS-PED-00138-000', 'BraTS-PED-00032-000', 'BraTS-PED-00129-000', 'BraTS-PED-00117-000', 'BraTS-PED-00109-000', 'BraTS-PED-00026-000', 'BraTS-PED-00105-000', 'BraTS-PED-00120-000', 'BraTS-PED-00125-000', 'BraTS-PED-00062-000', 'BraTS-PED-00084-000'], 
@@ -24,7 +36,10 @@ train_test_split = {
 
 # The mapping dict to map origin label index to the new overall label index
 dataset_lab_map = { 
-    'Sarcoma_train': [ 0, 1],
+    'Sarcoma_train_1p': [ 0, 1],
+    'Sarcoma_train_10p': [ 0, 1],
+    'Sarcoma_train_50p': [ 0, 1],
+    'Sarcoma_train_100p': [ 0, 1],
     # '10p_train': [ 0, 1, 2],
     # '50p_train': [ 0, 1, 2],
     # '100p_train': [ 0, 1, 2],
@@ -35,7 +50,10 @@ dataset_lab_map = {
 dataset_modality_map = { 
     #'amos_ct': 0,
     #'amos_mr': -1, # unknown MRI sequences, don't compute loss
-    'Sarcoma_train': 2,
+    'Sarcoma_train_1p': 2,
+    'Sarcoma_train_10p': 2,
+    'Sarcoma_train_50p': 2,
+    'Sarcoma_train_100p': 2,
     # '10p_train': 2,
     # '50p_train': 2,
     # '100p_train': 2,
@@ -43,7 +61,11 @@ dataset_modality_map = {
 
 # The weight to sample each dataset to balance training. Smaller dataset should have higher weight
 dataset_sample_weight = { 
-    'Sarcoma_train': 1,
+    'Sarcoma_train_1p': 1,
+    'Sarcoma_train_10p': 1,
+    'Sarcoma_train_50p': 1,
+    'Sarcoma_train_100p': 1,
+    #'Sarcoma_train': 1,
     # '10p_train': 1,
     # '50p_train': 1,
     # '100p_train': 1,
@@ -51,7 +73,11 @@ dataset_sample_weight = {
 
 # The parameters for color augmentation, CT and PET images 0.1 while MR images 0.2
 dataset_aug_prob = { 
-    'Sarcoma_train': 0.2,
+    'Sarcoma_train_1p': 0.2,
+    'Sarcoma_train_10p': 0.2,
+    'Sarcoma_train_50p': 0.2,
+    'Sarcoma_train_100p': 0.2,
+    #'Sarcoma_train': 0.2,
     # '10p_train': 0.2,
     # '50p_train': 0.2,
     # '100p_train': 0.2,

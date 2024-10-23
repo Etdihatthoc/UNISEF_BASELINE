@@ -7,7 +7,7 @@ base_path = "/mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/prepoccessing_data"
 train_test_split = {}
 
 # Liệt kê các thư mục con trong base_path
-subdirs = ['Sarcoma_train','test']
+subdirs = ['Sarcoma_train_1p','Sarcoma_train_10p','Sarcoma_train_50p','Sarcoma_train_100p','test']
 
 # Lặp qua các thư mục con
 for subdir in subdirs:
