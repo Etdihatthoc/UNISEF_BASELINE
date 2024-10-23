@@ -8,13 +8,14 @@
    sau khi tải xong đổi tên thành hermes\_resunet.pth
 
 3. Tạo môi trường ảo, install các package :   
+
    pip install \-r requirements.txt  
    git clone [https://github.com/Etdihatthoc/apex](https://github.com/Etdihatthoc/apex)  
    cd apex  
    python3 setup.py install  
    cd ..  
 
-4. Sửa lại abs path trong:
+4. CHÚ Ý: Sửa lại abs path trong:
    training\dataset\dim3\dataset_universal.py
 
    training\dataset\dim3\tools.py
@@ -31,10 +32,11 @@
    dòng 46,47 cho các tập dữ liệu tương ứng => mỗi lần chạy ứng với 1 tập dataset, kết quả lưu ở tgt_path
 
    - python python dataset_conversion/nii2npy.py
-5\. Training  
-Lưu ý: sửa lại epochs = 5 trong config\universal\hermes_resunet_3d.yaml để test xem chạy ổn chưa
 
-- CUDA\_VISIBLE\_DEVICES=0 python train.py \--gpu 0 \--batch\_size 1 \--load hermes\_resunet.pth \--resume \--dataset Sarcoma_train_1p
+6. Training  
+   Lưu ý: sửa lại epochs = 5 trong config\universal\hermes_resunet_3d.yaml để test xem chạy ổn chưa
 
-=> mỗi lần chạy ứng với 1 tập dataset, sửa --dataset tương ứng Sarcoma_train_1p, Sarcoma_train_10p, Sarcoma_train_50p, Sarcoma_train_100p
+   - CUDA\_VISIBLE\_DEVICES=0 python train.py \--gpu 0 \--batch\_size 1 \--load hermes\_resunet.pth \--resume \--dataset Sarcoma_train_1p
+
+   => mỗi lần chạy ứng với 1 tập dataset, sửa --dataset tương ứng Sarcoma_train_1p, Sarcoma_train_10p, Sarcoma_train_50p, Sarcoma_train_100p
 
