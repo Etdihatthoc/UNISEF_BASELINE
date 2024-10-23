@@ -23,7 +23,7 @@
 5. Với tập dataset, setup dữ liệu như sau
    - python dataset_conversion/our.py
 
-   Chú ý: sửa
+   Chú ý: sửa lại thành abs path 2 cái dưới đây
 
    src_path = '/home/aiotlabws/SonDinh/universal-medical-image-segmentation/uniseg-evaluation/Sarcoma_train_1p/'
 
