@@ -3,7 +3,7 @@
 1. git clone -b main_3 [https://github.com/Etdihatthoc/UNISEF\_BASELINE](https://github.com/Etdihatthoc/UNISEF\_BASELINE)   
 2. Tải pretrained model 
    cd UNISEF\_BASELINE  
-   wget https://cloudreve.vmv.re/api/v3/file/source/22096/hermes\_resunet.pth\\?sign\\=zzipfrjfRYmQtmiC5bhIRu4jE71Z\_ZDzRniaTLyR5rM%3D%3A0  
+   wget https://cloudreve.vmv.re/api/v3/file/source/22096/hermes_resunet.pth?sign=zzipfrjfRYmQtmiC5bhIRu4jE71Z_ZDzRniaTLyR5rM%3D%3A0
 
    sau khi tải xong đổi tên thành hermes\_resunet.pth
 
