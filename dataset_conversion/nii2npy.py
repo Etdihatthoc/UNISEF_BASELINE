@@ -29,12 +29,12 @@ dataset_list = [
             ('Sarcoma_train_100p', 'mr'),
             ]
 
-source_path = '/mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/data/'
-target_path = '/mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/prepoccessing_data/'
+source_path = '/content/drive/MyDrive/UNISEF_BASELINE/data/'
+target_path = '/content/drive/MyDrive/UNISEF_BASELINE/prepoccessing_data/'
 
 for dataset, modality in dataset_list:
     
-    shutil.copytree(os.path.join(source_path, dataset, 'list'), os.path.join(target_path, dataset, 'list'))
+    shutil.copytree(os.path.join(source_path, dataset, 'list'), os.path.join(target_path, dataset, 'list'),dirs_exist_ok=True)
     for name in os.listdir(os.path.join(source_path, dataset)):
         if 'gt' in name:
             idx = name.split('_gt')[0]

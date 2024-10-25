@@ -187,7 +187,7 @@ if __name__ == '__main__':
     
     class Args(object):
         def __init__(self):
-            self.data_root = '/mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/prepoccessing_data'
+            self.data_root = '/content/drive/MyDrive/UNISEF_BASELINE/prepoccessing_data'
     
     args = Args()
     print('testing')

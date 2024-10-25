@@ -1,7 +1,7 @@
 import os
 
 # Đường dẫn tới thư mục chứa các tập train
-base_path = "/mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/prepoccessing_data"
+base_path = "/content/drive/MyDrive/UNISEF_BASELINE/prepoccessing_data"
 
 # Tạo một dictionary chứa các tập train và test
 train_test_split = {}

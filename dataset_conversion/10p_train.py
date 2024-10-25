@@ -43,9 +43,8 @@ def ResampleImage(imImage, imLabel, save_path, name, target_spacing=(1., 1., 1.)
 if __name__ == '__main__':
 
 
-    src_path = '/mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/uniseg-evaluation/Sarcoma_train_1p/'
-    tgt_path = '/mnt/disk1/SonDinh/SonDinh/UNISEF_BASELINE/data/Sarcoma_train_1p/'
-
+    src_path = '/content/drive/MyDrive/UNISEF_BASELINE/uniseg-evaluation/Sarcoma_train_10p/'
+    tgt_path = '/content/drive/MyDrive/UNISEF_BASELINE/data/Sarcoma_train_10p/'
 
     name_list = os.listdir(src_path + 'images')
     name_list = [name.split('.')[0] for name in name_list]
