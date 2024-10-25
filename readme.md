@@ -11,6 +11,7 @@
 
    pip install \-r requirements.txt  
    git clone [https://github.com/Etdihatthoc/apex](https://github.com/Etdihatthoc/apex) 
+   
    cd apex  
    python3 setup.py install  
    cd ..  
@@ -43,8 +44,9 @@
    - python dataset_conversion/100p_train.py
 
       Sửa lại abs path trong file dataset_conversion/nii2npy.py ví dụ:
-      
+
       source_path = '/content/drive/MyDrive/UNISEF_BASELINE/data/'
+
       target_path = '/content/drive/MyDrive/UNISEF_BASELINE/prepoccessing_data/'
 
    - python dataset_conversion/nii2npy.py
