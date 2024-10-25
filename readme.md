@@ -23,6 +23,17 @@
 
 5. Với tập dataset, setup dữ liệu như sau
 
+   Chú ý: 
+         Nếu bị lỗi torch._six = > vào \apex\apex\amp\\_initialize.py sửa lại torch._six import string_classes bằng string_classes = str
+
+         Sửa lại thành abs path 2 cái dưới đây trong mỗi file
+
+      Ví Dụ: 
+      
+      src_path = '/home/aiotlabws/SonDinh/universal-medical-image-segmentation/uniseg-evaluation/Sarcoma_train_1p/'
+      tgt_path = '/home/aiotlabws/SonDinh/universal-medical-image-segmentation/data/Sarcoma_train_1p/'
+   
+      => mỗi lần chạy ứng với 1 tập dataset, kết quả lưu ở tgt_path. Chạy 4 command dưới đây
    - python dataset_conversion/1p_train.py
 
    - python dataset_conversion/10p_train.py
@@ -31,17 +42,10 @@
 
    - python dataset_conversion/100p_train.py
 
-   Chú ý: 
-   - Nếu bị lỗi torch._six = > vào \apex\apex\amp\\_initialize.py sửa lại torch._six import string_classes bằng string_classes = str
-   - sửa lại thành abs path 2 cái dưới đây
-   
-   Ví Dụ: 
-   
-   src_path = '/home/aiotlabws/SonDinh/universal-medical-image-segmentation/uniseg-evaluation/Sarcoma_train_1p/'
-
-   tgt_path = '/home/aiotlabws/SonDinh/universal-medical-image-segmentation/data/Sarcoma_train_1p/'
-   
-   => mỗi lần chạy ứng với 1 tập dataset, kết quả lưu ở tgt_path
+      Sửa lại abs path trong file dataset_conversion/nii2npy.py ví dụ:
+      
+      source_path = '/content/drive/MyDrive/UNISEF_BASELINE/data/'
+      target_path = '/content/drive/MyDrive/UNISEF_BASELINE/prepoccessing_data/'
 
    - python dataset_conversion/nii2npy.py
 
